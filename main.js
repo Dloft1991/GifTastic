@@ -1,14 +1,13 @@
 
 // array for buttons
 var topics = ["Iron Man", "Thor", "Captain America", "Hulk"]
-
 // make movie buttons
 function topicButton() {
     $("#topic-button").empty();
 
     //for loop the array
     for (var i = 0; i < topics.length; i++) {
-    
+
         var T = $("<button>");
 
         T.addClass("topic-btn");
@@ -34,43 +33,46 @@ function buttonMaker() {
 }
 buttonMaker();
 
-  // on click of putton
-  $("#topic-button").on("click", function() {
-      // this refers to the button that was clicked
+
+// on click of putton
+$("#topic-button").on("click", function () {
+    // this refers to the button that was clicked
     var person = $(this).attr("data-name");
 
-   // url for API
+
+    // url for API
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      person + "&api_key=dc6zaTOxFJmzC&limit=10";
-    
+        person + "&api_key=dc6zaTOxFJmzC&limit=10";
+
     $.ajax({
-      url: queryURL,
-      method: "GET"
+        url: queryURL,
+        method: "GET"
     })
-    .then(function(response) {
-        console.log(response);
-        $("#getGif").text(response);
+        .then(function (response) {
+            console.log(response);
+            $("#getGif").text(response);
 
-        var results = response.data;
+            var results = response.data;
 
-        for (var i = 0; i < results.length; i++) {
+            for (var i = 0; i < results.length; i++) {
 
-            var topicDiv = $("div");
-            //for the rating
-            var p = $("<p>").text("Rating: " + results[i].rating);
-            // for the image
-            var topicImage = $("<img>");
+                var topicDiv = $("div");
+                //for the rating
+                var p = $("<p>").text("Rating: " + results[i].rating);
+                // for the image
+                var topicImage = $("<img>");
 
-            topicImage.attr("src", results[i].images.fixed_height.url);
+                topicImage.attr("src", results[i].images.fixed_height.url);
 
-            topicDiv.append(p);
-            topicDiv.append(topicImage);
-            // 
-            $("#get-gif").prepend(topicDiv);
-        }
-    });
-    
+                topicDiv.append(p);
+                topicDiv.append(topicImage);
+                // 
+                $("#get-gif").prepend(topicDiv);
+            }
+        });
+
 });
 
-      
-    
+
+
+
