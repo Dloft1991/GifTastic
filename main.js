@@ -33,45 +33,54 @@ function buttonMaker() {
 }
 buttonMaker();
 
+// document the data
 
 // on click of putton
-$("#topic-button").on("click", function () {
-    // this refers to the button that was clicked
-    var person = $(this).attr("data-name");
+//#topic-button
+    $("button").on("click", function () {
+       
+        // this refers to the button that was clicked
+        var person = $(this).attr("data-name");
+    
+        // url for API
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            person + "&api_key=oLPcx3ePgUFvCN81AE7T51EJD7YhBd7V&limit=10";
+    
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+            .then(function(response) {
+                console.log(queryURL);
+                console.log(response);
 
+                
+                
+                var results = response.data;
+            
+                
+                for (var i = 0; i < results.length; i++) {
+    
+                    var topicDiv = $("div");
+                    //for the rating
+                    var p = $("<p>").text("Rating: " + results[i].rating);
+                    // for the image
+                    var topicImage = $("<img>");
+    
+                    topicImage.attr("src", results[i].images.fixed_height.url);
+    
+                    topicDiv.append(p);
+                    topicDiv.append(topicImage);
+                  
+               
+                    $("#getGif").prepend(topicDiv);
+                    
+                }
+            });
+            
+    
+    });
 
-    // url for API
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        person + "&api_key=dc6zaTOxFJmzC&limit=10";
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-        .then(function (response) {
-            console.log(response);
-            $("#getGif").text(response);
-
-            var results = response.data;
-
-            for (var i = 0; i < results.length; i++) {
-
-                var topicDiv = $("div");
-                //for the rating
-                var p = $("<p>").text("Rating: " + results[i].rating);
-                // for the image
-                var topicImage = $("<img>");
-
-                topicImage.attr("src", results[i].images.fixed_height.url);
-
-                topicDiv.append(p);
-                topicDiv.append(topicImage);
-                // 
-                $("#get-gif").prepend(topicDiv);
-            }
-        });
-
-});
 
 
 
