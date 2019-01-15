@@ -1,123 +1,78 @@
 
-// array for buttons
-var topics = ["Iron Man", "Thor", "Captain America", "Hulk"];
-// make movie buttons
+var heros = []
+$("button").on("click", function () {
 
-function showName() {
-    var person = $(this).attr("data-name");
+    var hero = $(this).attr("data-hero");
 
-    // url for API
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        person + "&api_key=oLPcx3ePgUFvCN81AE7T51EJD7YhBd7V&limit=5";
+        hero + "&api_key=dc6zaTOxFJmzC&limit=5";
+
 
     $.ajax({
         url: queryURL,
         method: "GET"
     })
+
         .then(function (response) {
-            console.log(queryURL);
+
             console.log(response);
+            var results = response.data;
 
-            var imageURL = response.data.image_original_url;
 
-            // var personDiv = $("<div class='movie'>");
+            for (var i = 0; i < results.length; i++) {
 
-            var heroImage = $("<img>");
+                var heroDiv = $("<div>");
+                var p = $("<p>").text("Rating: " + results[i].rating);
+                var heroImage = $("<img>");
 
-            heroImage.attr("src", imageURL);
-            heroImage.attr("alt", "Hero");
+                heroImage.attr("src", results[i].images.fixed_height.url);
+                heroDiv.append(p);
+                heroDiv.append(heroImage);
 
-            $("#get-gif").prepend(heroImage);
-
-            // //paragraph for rating
-            // var rate = $("<p>").text("Rating: " + rating);
-            // personDiv.append(rate);
-
-            // // get image
-            // var heroImage = $("<img>");
-            // heroImage.attr("src", result[i].images.fixed_height.url);
-
-            // personDiv.append(heroImage);
-    
-            // $("#get-gif").prepend(personDiv);
-
+                $("#get-gif").prepend(heroDiv);
+            }
         });
-}
+});
 
-function buttonMaker() {
+function makeButton() {
 
-    $("#hero-button").empty();
+    // Deleting the movies prior to adding new movies
+    // (this is necessary otherwise you will have repeat buttons)
+    $("#buttons-view").empty();
 
-    for (var i = 0; i < topics.length; i++) {
+    // Looping through the array of movies
+    for (var i = 0; i < heros.length; i++) {
 
-        var a = $("<button>");
-
-        a.addClass("hero-btn");
-        a.attr("data-name", topic[i]);
-        a.text(topic[i]);
-
-        $("#hero-button").append(a);
+      // Then dynamicaly generating buttons for each movie in the array
+      // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+      var a = $("<button>");
+      // Adding a class of movie-btn to our button
+      a.addClass("movie-btn");
+      // Adding a data-attribute
+      a.attr("data-name", heros[i]);
+      // Providing the initial button text
+      a.text(heros[i]);
+      // Adding the button to the buttons-view div
+      $("#buttons-view").append(a);
     }
-}
+    console.log(heros);
+  }
 
+  // This function handles events where a movie button is clicked
+  $("#add-hero").on("click", function(event) {
+    event.preventDefault();
+    // This line grabs the input from the textbox
+    var hero = $("#hero-input").val().trim();
 
+    // Adding movie from the textbox to our array
+    heros.push(hero);
 
-// // on click of putton
-// //
-// $("button").on("click", function () {
+    // Calling renderButtons which handles the processing of our movie array
+    makeButton();
+  });
 
-//     // this refers to the button that was clicked
-//     var person = $(this).attr("data-name");
+  // Adding a click event listener to all elements with a class of "movie-btn"
+//   $(document).on("click", ".movie-btn", displayMovieInfo);
 
-//     // url for API
-//     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-//         person + "&api_key=oLPcx3ePgUFvCN81AE7T51EJD7YhBd7V&limit=5";
-
-//     $.ajax({
-//         url: queryURL,
-//         method: "GET"
-//     })
-//         .then(function (response) {
-//             console.log(queryURL);
-//             console.log(response);
-
-//             //returning results
-//             var results = response.data;
-
-//             for (var i = 0; i < results.length; i++) {
-
-//                 var topicDiv = $("div");
-//                 //for the rating
-//                 var p = $("<p>").text("Rating: " + results[i].rating);
-//                 // for the image
-//                 var topicImage = $("<img>");
-
-//                 topicImage.attr("src", results[i].images.fixed_height.url);
-
-//                 topicDiv.prepend(p);
-//                 topicDiv.prepend(topicImage);
-
-
-//                 $("#getGif").prepend(topicDiv);
-
-//             }
-//         });
-//         $("#add-something").on("click"), function(event) {
-//             event.preventDefault();
-
-//             var newbie = $("#add-hero").val().trim();
-
-//             newbie.push()
-//         }
-
-
-// });
-
-
-
-
-
-
-
-
-
+  // Calling the renderButtons function to display the intial buttons
+  makeButton();

@@ -14,31 +14,30 @@
     <h1>Get Giphy With It</h1>
     <h2>Avenger Style</h2>
 
-    <!--making buttons-->
-    <div id="hero-button"></div>
-
+  
     <!-- add a hero-->
-    <form id="hero-form">
-        <label for="hero-input">Add Hero</label>
-        <input type="text" id="hero-input">
-        <br>
+  
+        <button data-hero="Star lord">Star Lord</button>
+        <button data-hero="Captain America">Captain America</button>
+        <button data-hero="Iron Man">Iron Man</button>
+        <button data-hero="Spider Man">Spider Man</button>
+        <button data-hero="Thor">Thor</button>
+        <button data-hero=" " id="buttons-view"></button>
+            <br>
+        <form id="more-heros">
+            <label for="hero-input">Add Hero!</label>
+            <input type="text" id="hero-input">
+            <br>
+      
+            <!-- Button triggers new movie to be added -->
+            <input id="add-hero" type="submit" value="Add Hero">
+          </form>
+      
+       
+        <div id="get-gif"></div> 
 
-        <!-- Button triggers new movie to be added -->
-        <input id="add-hero" type="submit" value="Add Hero">
-    </form>
-
-    <!--where the gifs go-->
-    <div id="get-gif"></div>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="main.js"></script>
 </body>
 
 </html>
-
-
-<!-- <button data-name="Star lord">Star Lord</button>
-        <button data-name="Captain America">Captain America</button>
-        <button data-name="Iron Man">Iron Man</button>
-        <button data-name="Spider Man">Spider Man</button>
-        <button data-name="Thor">Thor</button> -->
