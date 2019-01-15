@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Giphy with it</title>
 </head>
+
 <body>
 
-        <h1>Get Giphy With It</h1>
-        <h2>Avenger Style</h2>
-    <!--making buttons-->
-        <div id="topic-button"></div>
+    <h1>Get Giphy With It</h1>
+    <h2>Avenger Style</h2>
 
-        <!-- <button data-name="chris pratt">chris pratt</button> -->
-       
-<!--where the gifs go-->
-      <div id="getGif"></div>
-            
+    <!--making buttons-->
+    <div id="hero-button"></div>
+
+    <!-- add a hero-->
+    <form id="hero-form">
+        <label for="hero-input">Add Hero</label>
+        <input type="text" id="hero-input">
+        <br>
+
+        <!-- Button triggers new movie to be added -->
+        <input id="add-hero" type="submit" value="Add Hero">
+    </form>
+
+    <!--where the gifs go-->
+    <div id="get-gif"></div>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="main.js"></script>
 </body>
+
 </html>
+
+
+<!-- <button data-name="Star lord">Star Lord</button>
+        <button data-name="Captain America">Captain America</button>
+        <button data-name="Iron Man">Iron Man</button>
+        <button data-name="Spider Man">Spider Man</button>
+        <button data-name="Thor">Thor</button> -->
