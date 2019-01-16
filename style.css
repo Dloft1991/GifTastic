@@ -1,10 +1,15 @@
-h1 {
-    text-align: center;
-    color: Red;
-}
 
-h2 {
+#top {
     text-align: Center;
     color: Red;
+    font-size: 20px;
+
 }
 
+
+body {
+    font-family: 'Bungee Shade', cursive;
+    background: url('http://images4.fanpop.com/image/photos/21400000/The-Avengers-Assemble-the-avengers-21474271-1920-1080.jpg');
+    /* background: url('https://static1.srcdn.com/wordpress/wp-content/uploads/thor-bifrost-asgard.jpg'); */
+    color: white;
+  }
